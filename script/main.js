@@ -1,22 +1,18 @@
 // trigger to play music in the background with sweetalert
 window.addEventListener('load', () => {
-    Swal.fire({
-        title: 'Do you want to play music in the background?',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes',
-        cancelButtonText: 'No',
-    }).then((result) => {
-        if (result.isConfirmed) {
+    document.querySelector('.song').play().catch(() => {
+        // In case autoplay is blocked, provide a fallback
+        Swal.fire({
+            title: 'Hé nhô ❤️',
+            icon: 'info',
+            confirmButtonText: 'Zô',
+        }).then(() => {
             document.querySelector('.song').play();
-            animationTimeline();
-        } else {
-            animationTimeline();
-        }
+        });
     });
+    animationTimeline();
 });
+
 
 
 // animation timeline
@@ -96,7 +92,7 @@ const animationTimeline = () => {
     })
     .staggerTo(
         ".hbd-chatbox span",
-        1.5, {
+        1, {
             visibility: "visible",
         },
         0.05
@@ -263,10 +259,11 @@ const animationTimeline = () => {
         },
         "+=1"
     );
-
+    
     // Restart Animation on click
+    // const replyBtn = document.getElementById("replay");
     const replyBtn = document.getElementById("replay");
     replyBtn.addEventListener("click", () => {
-        tl.restart();
+        window.location.href = "https://example.com"; // Replace with the desired URL
     });
 }
